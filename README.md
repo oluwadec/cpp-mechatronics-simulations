@@ -1,52 +1,101 @@
-# Mechatronics & Embedded Systems C++ Suite
+# Mechatronics Control Systems in C++
 
-<p center>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/gcc/gcc-original.svg" alt="GCC" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" width="60" height="60"/>
-</p>
-
-A collection of lightweight, Object-Oriented C++ projects modeling core engineering systems, control theory, and spatial kinematics. Built from scratch without external third-party dependencies to showcase low-level algorithms, data structure design, and software architecture principles applied to robotics.
+A focused suite of pure C++ implementations covering core concepts in control theory, linear algebra, and robotic kinematics.  
+Built from scratch with zero external dependencies to demonstrate clean software architecture applied to real engineering problems.
 
 ---
 
-## 📂 Featured Projects
+## Featured Modules
 
-### 1. 🧮 Matrix Mathematics Library (`1_MatrixLibrary/`)
-A custom linear algebra library designed to handle spatial coordinate transformations and state-space calculations required in robotics kinematics and sensor processing.
+### 1. Matrix Mathematics Library  
+**Path:** `1_MatrixLibrary/`
 
-* **Engineering Concepts:** State transformations, coordinate rotations, matrix dimension alignment.
-* **C++ Implementation:** 
-  * Encapsulated dynamic 2D grid structure using `std::vector<std::vector<double>>`.
-  * Safe memory element manipulation with bound checking (`std::out_of_range`).
-  * Optimized matrix multiplication ($A \cdot B$) with dimension mismatch exception handling.
-  * Transpose matrix calculation swapping dimensions ($R \times C \rightarrow C \times R$).
+Custom linear algebra toolkit designed for spatial transformations and state-space calculations used in robotics and sensor fusion.
 
-### 2. 🎛️ PID Controller & Physical System Simulator (`2_PIDController/`)
-An interactive simulation of a Closed-Loop Proportional-Integral-Derivative (PID) controller regulating a continuous dynamic system (e.g., motor speed control or robotic arm position).
+**Engineering Concepts**
+- Coordinate transformations and rotations
+- Matrix dimension safety and alignment
+- State representation for control systems
 
-* **Engineering Concepts:** Closed-loop feedback systems, steady-state error accumulation, derivative overshoot prevention.
-* **C++ Implementation:**
-  * Numerical approximation of error integration ($K_i \cdot \int e\,dt$) and differentiation ($K_d \cdot \frac{de}{dt}$).
-  * Configurable tuning parameters ($K_p, K_i, K_d$) via clean OOP class constructors.
-  * Continuous time-step loop ($\Delta t$) tracking target vs. actual values step-by-step.
-
-### 3. 🦾 Command-Pattern Robot Arm Kinematics (`3_RobotArmSimulator/`)
-A 2D robotic manipulator simulator that translates discrete operational commands into dynamic Cartesian coordinates $(X, Y)$ using Forward Kinematics.
-
-* **Engineering Concepts:** Forward Kinematics ($X = r \cdot \cos\theta$, $Y = r \cdot \sin\theta$), End-Effector Gripper State tracking, Manipulator trajectory planning.
-* **C++ Implementation:**
-  * **Command Design Pattern:** Polymorphic interface (`Command` base class) separating command queuing from robot execution state.
-  * Automatic memory cleanup with custom destructor management for command pointers.
-  * Trigonometric transformations using standard C++ `<cmath>` utilities.
+**C++ Highlights**
+- Encapsulated dynamic 2-D structure (`std::vector<std::vector<double>>`)
+- Bounds-checked element access with proper exception handling
+- Matrix multiplication with dimension validation
+- Efficient transpose operation
 
 ---
 
-## 🛠️ Build & Run Instructions
+### 2. PID Controller Simulator  
+**Path:** `2_PIDController/`
 
-All projects are standalone standard C++17 programs and can be compiled using `g++` (or any modern C++ compiler).
+Interactive closed-loop PID controller regulating a continuous dynamic system (motor speed / position style plant).
 
-### Prerequisite
-Ensure you have GCC/G++ installed:
+**Engineering Concepts**
+- Proportional, Integral, and Derivative control
+- Steady-state error elimination
+- Overshoot damping and derivative kick awareness
+- Discrete-time approximation of continuous control laws
+
+**C++ Highlights**
+- Clean OOP design with configurable `Kp`, `Ki`, `Kd`
+- Numerical integration and differentiation of the error signal
+- Fixed time-step simulation loop
+- Real-time target vs. actual tracking output
+
+---
+
+### 3. Robot Arm Forward Kinematics Simulator  
+**Path:** `3_RobotArmSimulator/`
+
+2-D robotic manipulator that converts joint commands into Cartesian end-effector positions using forward kinematics.
+
+**Engineering Concepts**
+- Forward kinematics (`x = r · cosθ`, `y = r · sinθ`)
+- End-effector state tracking
+- Basic trajectory / command sequencing
+
+**C++ Highlights**
+- Command design pattern (polymorphic `Command` interface)
+- Separation of command queuing from robot state execution
+- Proper resource management with custom destructors
+- Standard `<cmath>` trigonometric transforms
+
+---
+
+## Build & Run
+
+All modules are standalone C++17 programs using only the standard library.
+
 ```bash
-g++ --version
+# Example – build the PID controller
+cd 2_PIDController
+g++ -std=c++17 -O2 -o pid main.cpp
+./pid
+```
+
+Repeat the same pattern for the other modules.
+
+---
+
+## Design Philosophy
+
+- Zero third-party dependencies
+- Emphasis on readable, maintainable, and educational code
+- Clear mapping between engineering theory and software implementation
+- Suitable as portfolio evidence of control systems + C++ proficiency
+
+---
+
+## Repository Layout
+```
+mechatronics-cpp-projects/
+├── 1_MatrixLibrary/
+├── 2_PIDController/
+├── 3_RobotArmSimulator/
+└── README.md
+```
+
+---
+
+**Author:** Aboderin Logo (`oluwadec`)  
+**Domain:** Mechatronics Engineering · Control Systems · Robotics Software
