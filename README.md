@@ -1,64 +1,90 @@
-# Mechatronics Control Systems in C++
+# Mechatronics Control Systems in Modern C++
 
-A focused suite of pure C++ implementations covering core concepts in control theory, linear algebra, and robotic kinematics.  
-Built from scratch with zero external dependencies to demonstrate clean software architecture applied to real engineering problems.
+**Pure C++ implementations of core control and robotics concepts — zero external dependencies.**
+
+This repository contains clean, educational implementations of fundamental building blocks used in mechatronics and robotics software:
+
+1. **Matrix Mathematics Library**
+2. **PID Controller Simulator**
+3. **2D Robot Arm Forward Kinematics Simulator**
+
+Each module is deliberately written to demonstrate both the *engineering concept* and *solid C++ design*.
 
 ---
 
-## Featured Modules
+## Why This Repository Exists
 
-### 1. Matrix Mathematics Library  
+Most student control/robotics code is either:
+- Written in MATLAB/Python (great for learning theory, weaker for systems skills), or
+- Buried inside large frameworks.
+
+This project intentionally stays in pure C++ so that:
+
+- Ownership, memory, and performance characteristics are visible
+- The mapping between theory and implementation is clear
+- The code can serve as credible portfolio evidence of both control knowledge *and* C++ competence
+
+---
+
+## Modules
+
+### 1. Matrix Mathematics Library
 **Path:** `1_MatrixLibrary/`
 
-Custom linear algebra toolkit designed for spatial transformations and state-space calculations used in robotics and sensor fusion.
+A minimal but carefully designed matrix class for linear algebra operations commonly required in robotics and control (transformations, state-space work, etc.).
 
 **Engineering Concepts**
-- Coordinate transformations and rotations
-- Matrix dimension safety and alignment
-- State representation for control systems
+- Coordinate transformations
+- State representation
+- Matrix dimension safety
 
-**C++ Highlights**
-- Encapsulated dynamic 2-D structure (`std::vector<std::vector<double>>`)
-- Bounds-checked element access with proper exception handling
-- Matrix multiplication with dimension validation
-- Efficient transpose operation
+**C++ Design Highlights**
+- Encapsulated dynamic 2D storage
+- Bounds-checked access with meaningful exceptions
+- Dimension validation on multiplication
+- Clean transpose implementation
 
 ---
 
-### 2. PID Controller Simulator  
+### 2. PID Controller Simulator
 **Path:** `2_PIDController/`
 
-Interactive closed-loop PID controller regulating a continuous dynamic system (motor speed / position style plant).
+Discrete-time PID controller regulating a simple dynamic plant (motor-style system). Demonstrates the classic control loop in software form.
 
 **Engineering Concepts**
-- Proportional, Integral, and Derivative control
+- Proportional, Integral, and Derivative terms
 - Steady-state error elimination
-- Overshoot damping and derivative kick awareness
-- Discrete-time approximation of continuous control laws
+- Overshoot and derivative kick awareness
+- Discrete approximation of continuous control laws
+- Fixed-timestep simulation
 
-**C++ Highlights**
-- Clean OOP design with configurable `Kp`, `Ki`, `Kd`
-- Numerical integration and differentiation of the error signal
-- Fixed time-step simulation loop
-- Real-time target vs. actual tracking output
+**C++ Design Highlights**
+- Clean OOP design with configurable gains
+- Explicit numerical integration/differentiation of error
+- Clear separation between controller and plant
+
+**Key Performance Metrics to Observe**
+- Rise time
+- Overshoot (%)
+- Settling time
+- Steady-state error
 
 ---
 
-### 3. Robot Arm Forward Kinematics Simulator  
+### 3. Robot Arm Forward Kinematics Simulator
 **Path:** `3_RobotArmSimulator/`
 
-2-D robotic manipulator that converts joint commands into Cartesian end-effector positions using forward kinematics.
+2D robotic manipulator that converts joint angles into Cartesian end-effector position using basic forward kinematics.
 
 **Engineering Concepts**
-- Forward kinematics (`x = r · cosθ`, `y = r · sinθ`)
-- End-effector state tracking
-- Basic trajectory / command sequencing
+- Forward kinematics (`x = L · cosθ`, `y = L · sinθ` and multi-link extension)
+- End-effector tracking
+- Simple command sequencing
 
-**C++ Highlights**
-- Command design pattern (polymorphic `Command` interface)
-- Separation of command queuing from robot state execution
-- Proper resource management with custom destructors
-- Standard `<cmath>` trigonometric transforms
+**C++ Design Highlights**
+- Command pattern (polymorphic command interface)
+- Separation of command queue from robot state
+- Clear resource management
 
 ---
 
@@ -67,35 +93,41 @@ Interactive closed-loop PID controller regulating a continuous dynamic system (m
 All modules are standalone C++17 programs using only the standard library.
 
 ```bash
-# Example – build the PID controller
+# Example: PID Controller
 cd 2_PIDController
-g++ -std=c++17 -O2 -o pid main.cpp
+g++ -std=c++17 -O2 -Wall -Wextra -o pid main.cpp
 ./pid
 ```
 
-Repeat the same pattern for the other modules.
+The same pattern applies to the other modules.
 
 ---
 
 ## Design Philosophy
 
-- Zero third-party dependencies
-- Emphasis on readable, maintainable, and educational code
-- Clear mapping between engineering theory and software implementation
-- Suitable as portfolio evidence of control systems + C++ proficiency
+- **Zero third-party dependencies** — forces understanding of the fundamentals
+- **Readability first** — code should be explainable in an interview
+- **Clear mapping** between theory and implementation
+- **Educational value** over feature completeness
 
 ---
 
-## Repository Layout
-```
-mechatronics-cpp-projects/
-├── 1_MatrixLibrary/
-├── 2_PIDController/
-├── 3_RobotArmSimulator/
-└── README.md
-```
+## Future Improvements
+
+- Add simple data logging + CSV export for analysis
+- Parameter sweeps for PID tuning demonstration
+- Inverse kinematics for the robot arm
+- Basic visualization output (ASCII or simple plot data)
+- Unit tests for the matrix library
 
 ---
 
-**Author:** Aboderin Logo (`oluwadec`)  
-**Domain:** Mechatronics Engineering · Control Systems · Robotics Software
+## Author
+
+**Aboderin Logo** (`oluwadec`)  
+Mechatronics Engineering Student  
+Focus: Control Systems · Robotics Software · Systems Programming in C++
+
+---
+
+*Built to learn deeply. Documented to communicate clearly.*
